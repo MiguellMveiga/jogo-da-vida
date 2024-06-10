@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="jogodavidafase3.css">
+    <title>Jogo da Vida</title>
+</head>
+<header>
+<h1> Lugar Desconhecido (<span>23:35 </span>)PM</h1>
+</header>
+<body>
+<main>
+    <aside>
+
+    </aside>
+<article>
+
+</article>
+</main>
+</div>
+</body>
+<footer>
+<div id="imagem-fundo-esquerda" class="imagem-fundo">
+</div>
+<div id="imagem-fundo-direita" class="imagem-fundo">
+</div>
+
+    <div id="caixa-dialogo" onclick="proximoDialogo()">
+        <div id="dialogo-personagem" class="dialogo-personagem"> <!-- Adicionei esta linha -->
+            <img id="imagem-personagem" class="imagem-personagem" src="">
+            <div id="texto-personagem" class="texto-personagem"> <!-- Adicionei esta linha -->
+                <h2 id="nome-personagem" class="nome-personagem">Pedro</h2>
+                <p id="texto-dialogo" class="texto-dialogo"></p>
+            </div>
+        </div>
+       <center> <a href="#"><button class="botao-dialogo">Falar sim e Experimentar</button></a>
+        <a href="#"><button class="botao-dialogo">Falar Não e voltar para trás</button><a>
+    </div>
+    <script>
+        let dialogos = [
+            {personagem: "Pedro", texto: "Oque deu na minha cabeça em confiar naquele cara? Agora estou perdido e ele sumiu, Meu Deus que confusão!", imagem: "https://i.imgur.com/4c2hvOy.png", posicao: "esquerda"},
+            {personagem: "Homem Misterioso", texto: "Olá", imagem: "", posicao: "direita"},
+            {personagem: "Pedro", texto: "Quem é você??", imagem: "https://i.imgur.com/4c2hvOy.png", posicao: "esquerda"},
+            {personagem: "Homem Misterioso", texto: "Sou um fornecedor, como conseguiu chegar até aqui?", imagem: "", posicao: "direita"},
+            {personagem: "Pedro", texto: "Encontrei um cara falando sobre algo que podia me relaxar e que para conseguir uma 'amostra grátis' eu deveria seguir ele porém ele sumiu e agora estou perdido!!", imagem: "https://i.imgur.com/4c2hvOy.png", posicao: "esquerda"},
+            {personagem: "Homem Misterioso", texto: "Acalme-se, você está no lugar certo, eu posso lhe dar essa coisa relaxante para você, você realmente deseja isso?", imagem: "", posicao: "direita"},
+            {personagem: "Pedro", texto: "(eu realmente quero experimentar isso?)", imagem: "https://i.imgur.com/4c2hvOy.png", posicao: "esquerda"}
+            // Adicione mais diálogos conforme necessário
+        ];
+
+        let indiceDialogo = 0;
+
+     function proximoDialogo() {
+    if (indiceDialogo < dialogos.length) {
+        let dialogo = dialogos[indiceDialogo];
+        document.getElementById("nome-personagem").innerText = dialogo.personagem;
+        document.getElementById("texto-dialogo").innerText = dialogo.texto;
+        document.getElementById("imagem-personagem").src = dialogo.imagem;
+        document.getElementById("dialogo-personagem").className = "dialogo-personagem " + dialogo.posicao;
+        document.getElementById("imagem-fundo-esquerda").style.opacity = dialogo.posicao === "esquerda" ? 1 : 0.5;
+        document.getElementById("imagem-fundo-direita").style.opacity = dialogo.posicao === "direita" ? 1 : 0.5;
+        indiceDialogo++;
+    } else {
+        // Mostra os botões quando todos os diálogos forem exibidos
+        let botoes = document.getElementsByClassName("botao-dialogo");
+        for (let i = 0; i < botoes.length; i++) {
+            botoes[i].style.display = "inline-block";
+        }
+
+    }
+}
+
+        // Chama a função para iniciar o diálogo quando a página é carregada
+        window.onload = proximoDialogo;
+    </script>
+</footer>
+</html>
