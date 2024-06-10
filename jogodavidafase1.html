@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="jogodavidafase1.css">
+    <title>Jogo da Vida</title>
+</head>
+<header>
+<h1> No Seu Bairro (<span>10:00 </span>)AM</h1>
+</header>
+<body>
+<main>
+    <aside>
+
+    </aside>
+<article>
+
+</article>
+</main>
+</div>
+</body>
+<footer>
+<div id="imagem-fundo-esquerda" class="imagem-fundo">
+</div>
+<div id="imagem-fundo-direita" class="imagem-fundo">
+</div>
+
+    <div id="caixa-dialogo" onclick="proximoDialogo()">
+        <div id="dialogo-personagem" class="dialogo-personagem"> <!-- Adicionei esta linha -->
+            <img id="imagem-personagem" class="imagem-personagem" src="">
+            <div id="texto-personagem" class="texto-personagem"> <!-- Adicionei esta linha -->
+                <h2 id="nome-personagem" class="nome-personagem">Pedro</h2>
+                <p id="texto-dialogo" class="texto-dialogo"></p>
+            </div>
+        </div>
+       <center> <a href="fase2 1.html"><button class="botao-dialogo">Sim</button></a>
+        <a href="fase2 1.html"><button class="botao-dialogo">Depois eu vou</button><a>
+    </div>
+    <script>
+        let dialogos = [
+            {personagem: "Pedro", texto: "A Cara que tédio não tem nada pra fazer nesse lugar.", imagem: "https://i.imgur.com/4c2hvOy.png", posicao: "esquerda"},
+            {personagem: "Lucas", texto: "Opa! Eai Pedro beleza, como você tá?,ta afim de ir numa festinha comigo", imagem: "https://i.imgur.com/Ttt86eU.png", posicao: "direita"},
+            {personagem: "Pedro", texto: "Eai, que festinha seria essa? (tenho nada para fazer mesmo).", imagem: "https://i.imgur.com/4c2hvOy.png", posicao: "esquerda"},
+            {personagem: "Lucas", texto: " Vai ser lá no centro da cidade, vai ser maneiro!", imagem: "https://i.imgur.com/Ttt86eU.png", posicao: "direita"},
+            {personagem: "Pedro", texto: "(Devo ir?).", imagem: "https://i.imgur.com/4c2hvOy.png", posicao: "esquerda"},
+            // Adicione mais diálogos conforme necessário
+        ];
+
+        let indiceDialogo = 0;
+
+     function proximoDialogo() {
+    if (indiceDialogo < dialogos.length) {
+        let dialogo = dialogos[indiceDialogo];
+        document.getElementById("nome-personagem").innerText = dialogo.personagem;
+        document.getElementById("texto-dialogo").innerText = dialogo.texto;
+        document.getElementById("imagem-personagem").src = dialogo.imagem;
+        document.getElementById("dialogo-personagem").className = "dialogo-personagem " + dialogo.posicao;
+        document.getElementById("imagem-fundo-esquerda").style.opacity = dialogo.posicao === "esquerda" ? 1 : 0.5;
+        document.getElementById("imagem-fundo-direita").style.opacity = dialogo.posicao === "direita" ? 1 : 0.5;
+        indiceDialogo++;
+    } else {
+        // Mostra os botões quando todos os diálogos forem exibidos
+        let botoes = document.getElementsByClassName("botao-dialogo");
+        for (let i = 0; i < botoes.length; i++) {
+            botoes[i].style.display = "inline-block";
+        }
+
+    }
+}
+
+        // Chama a função para iniciar o diálogo quando a página é carregada
+        window.onload = proximoDialogo;
+    </script>
+</footer>
+</html>
